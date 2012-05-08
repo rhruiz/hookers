@@ -20,7 +20,8 @@ module Hookers
         return nil if remote_uri.nil?
         remote_uri.gsub!(/(git@|git:\/\/)/, "http://")
         remote_uri.gsub!(/:(?!\/\/)/, "/")
-        name = remote_uri.split(/\//).at(-1).gsub(/\.git$/, "")
+        remote_uri.gsub!(/\.git$/, "")
+        name = remote_uri.split(/\//).at(-1)
         new(name, remote_uri)
       end
     end
