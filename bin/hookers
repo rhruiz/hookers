@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+
+require 'hookers'
+
+options = Slop.parse help: true do
+  on :changelog=, "Generate changelog from this refence to the current head", argument: true
+  on :setup, false
+end
+
+Hookers.run!(options.to_hash)
