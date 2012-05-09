@@ -8,6 +8,8 @@ require "hookers/changelog/parser"
 
 require "hookers/pivotal/pivotal"
 
+require "hookers/commands/changelog"
+
 require "slop"
 
 module Hookers
@@ -15,7 +17,7 @@ module Hookers
 
   def run!(options = {})
     if options[:changelog] != nil
-
+      Hookers::Commands::Changelog.new(options).run
     end
   end
 end
