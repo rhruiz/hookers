@@ -5,6 +5,9 @@ require "hookers/changelog/changelogger"
 require "hookers/changelog/commit"
 require "hookers/changelog/history"
 require "hookers/changelog/parser"
+
+require "hookers/pivotal/pivotal"
+
 require "slop"
 
 module Hookers
