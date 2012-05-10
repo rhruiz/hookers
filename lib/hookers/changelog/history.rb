@@ -3,8 +3,8 @@
 module Hookers
   module Changelog
     class History
-      def self.since(tag)
-        between(tag, "HEAD")
+      def self.first
+        %x[git rev-list --all --reverse | head -1].strip
       end
 
       def self.between(from, to)
