@@ -1,0 +1,7 @@
+require "hookers/changelog/project"
+require "hookers/changelog/affects"
+require "hookers/changelog/changelogger"
+require "hookers/changelog/commit"
+require "hookers/changelog/history"
+require "hookers/changelog/parser"
+require "hookers/commands/changelog"
