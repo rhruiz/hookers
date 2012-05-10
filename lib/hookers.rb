@@ -11,11 +11,15 @@ require "hookers/pivotal/pivotal"
 require "slop"
 
 module Hookers
-  extend self
+	extend self
 
-  def run!(options = {})
-    if options[:changelog] != nil
+	def root
+		File.expand_path '../..', __FILE__
+	end
 
-    end
-  end
+	def run!(options = {})
+		if options[:changelog] != nil
+
+		end
+	end
 end

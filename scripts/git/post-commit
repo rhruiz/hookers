@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+
+if ENV["PIVOTAL_TRACKER_TOKEN"]
+  api_token = ENV["PIVOTAL_TRACKER_TOKEN"]
+else
+  puts "set PIVOTAL_TRACKER_TOKEN in the environment to enable notification"
+  exit 0
+end
+
+pivotal = Hookers::Pivotal::TrackerProject.new(api_token)
+
+pivotal.notify_changes
