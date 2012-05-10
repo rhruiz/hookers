@@ -1,10 +1,8 @@
-#!/usr/bin/env ruby
 
-if ENV["PIVOTAL_TRACKER_TOKEN"]
-  api_token = ENV["PIVOTAL_TRACKER_TOKEN"]
+if [ "$PIVOTAL_TRACKER_TOKEN" = "" ]; then
+  echo "set PIVOTAL_TRACKER_TOKEN in the environment to enable notification"
+  exit 1
 else
-  puts "set PIVOTAL_TRACKER_TOKEN in the environment to enable notification"
-  exit 0
-end
-
-hookers pivotal --api-token=api_token
+  hookers pivotal --api-token=$PIVOTAL_TRACKER_TOKEN
+  exit $?
+fi
