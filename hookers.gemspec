@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.email       = ["rhruiz@gmail.com"]
   s.homepage    = ""
   s.summary     = "Git hooks and change logs"
-  s.description = "Git hooks and change log generator"
+  s.description = "Contains default hooks files to integrate git with pivotal tracker and change log generator"
 
   s.rubyforge_project = "hookers"
 
