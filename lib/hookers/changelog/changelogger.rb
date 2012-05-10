@@ -9,8 +9,10 @@ module Hookers
         @project = project
       end
 
-      def generate(last_deployed)
-        lines = History.since(last_deployed)
+      def generate(options = {})
+        from = options[:from] || History.first
+        to = options[:to] || "HEAD"
+        lines = History.between(from, to)
         parser = Parser.new(@project)
         commits = lines.map { |e| parser.parse(e) }.flatten.group_by(&:identifier)
 
