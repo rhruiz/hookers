@@ -18,6 +18,7 @@ module Hookers
       to_path = "#{root_path}/.git/hooks/post-commit"
 
       FileUtils.cp(from_path, to_path)
+      FileUtils.chmod "+x", to_path
     end
   end
 end
