@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 
+require 'rubygems'
 require 'hookers'
 
 args = ARGV.dup
@@ -8,7 +9,8 @@ command = args.shift
 options = Slop.parse(args, help: true) do
   on :from, "Generate changelog from this refence", argument: true
   on :to, "Generate changelog up to this reference", argument: true
-  on :setup, false
+  on :setup, "Copy git hooks files to project .git/hooks ", argument: true
+  on :"api-token", "Pivotal user token to sync commits", argument: true
 end
 
 Hookers.run!(command, options.to_hash)
