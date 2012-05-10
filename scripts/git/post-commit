@@ -1,8 +1,8 @@
 
 if [ "$PIVOTAL_TRACKER_TOKEN" = "" ]; then
-  echo "set PIVOTAL_TRACKER_TOKEN in the environment to enable notification"
-  exit 1
+  echo "set PIVOTAL_TRACKER_TOKEN in the environment to enable notification";
+  exit 1;
 else
-  hookers pivotal --api-token=$PIVOTAL_TRACKER_TOKEN
-  exit $?
+  hookers pivotal --api-token=$PIVOTAL_TRACKER_TOKEN;
+  exit $?;
 fi
