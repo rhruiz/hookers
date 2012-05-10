@@ -2,7 +2,7 @@ require "hookers/version"
 require "hookers/command"
 
 require "hookers/changelog"
-require "hookers/pivotal/pivotal"
+require "hookers/pivotal"
 
 require "slop"
 
