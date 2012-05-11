@@ -5,8 +5,8 @@ require "hookers/version"
 Gem::Specification.new do |s|
   s.name        = "hookers"
   s.version     = Hookers::VERSION
-  s.authors     = ["Ricardo Hermida Ruiz"]
-  s.email       = ["rhruiz@gmail.com"]
+  s.authors     = ["Ricardo Hermida Ruiz", "Flavio Henrique"]
+  s.email       = ["rhruiz@gmail.com", "flavio.henrique85@gmail.com"]
   s.homepage    = ""
   s.summary     = "Git hooks and change logs"
   s.description = "Contains default hooks files to integrate git with pivotal tracker and change log generator"
