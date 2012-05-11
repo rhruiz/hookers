@@ -22,8 +22,8 @@ module Hookers
       end
 
       def uri
-        return "http://bugzilla-qa.linux.locaweb.com.br/show_bug.cgi?id=" + self.number if bug?
-        return "http://pivotaltracker.com/story/show/" + self.number if feature?
+        return "http://bugzilla-qa.linux.locaweb.com.br/show_bug.cgi?id=#{self.number}" if bug?
+        return "http://pivotaltracker.com/story/show/#{self.number}" if feature?
       end
 
       def initialize(commit, type, number)

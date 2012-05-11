@@ -5,13 +5,11 @@ module Hookers
     class GitCommit
       include Hookers::Command
 
-      KEYS = %w(bug feature story fixed fixes completed finished delivers)
-
       attr_accessor :options, :command, :git
 
-      KEYS.each do |command|
-        Hookers.commands[command] = self
-      end
+      KEYS = %w(bug feature story fixed fixes completed finished delivers)
+
+      KEYS.each{|command| Hookers.commands[command] = self } 
 
       def initialize(command, options = {})
         self.options = options
