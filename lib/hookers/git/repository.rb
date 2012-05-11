@@ -9,8 +9,7 @@ module Hookers
 			end
 
 			def commit(message)
-				command = shellwords("git commit -m'#{message}'")
-				%x(command)
+				%x(git commit -m'#{message}')
 			end
 		end
 	end

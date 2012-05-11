@@ -14,6 +14,6 @@ module Hookers
 	end
 
 	def self.run!(command, options = {})
-	  commands[command].new(command, options).run if commands.key?(command)
+		commands[command].new(command, options).run if commands.key?(command)
 	end
 end

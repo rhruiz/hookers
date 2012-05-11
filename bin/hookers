@@ -11,6 +11,8 @@ options = Slop.parse(args, help: true) do
   on :to, "Generate changelog up to this reference", argument: true
   on :setup, "Copy git hooks files to project .git/hooks ", argument: true
   on :"api-token", "Pivotal user token to sync commits", argument: true
+  on :m, "Message to be used on commit", argument: true
+  on :id, "Pivotal story id", argument: true
 end
 
 Hookers.run!(command, options.to_hash)
