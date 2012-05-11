@@ -9,8 +9,9 @@ module Hookers
 
       Hookers.commands["setup"] = self
 
-      def initialize(command, options = {})
-        self.options = options
+      def initialize(command, args)
+        self.class.slop.parse(args)
+        self.options = self.class.slop.to_hash
       end
 
       def run

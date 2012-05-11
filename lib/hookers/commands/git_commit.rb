@@ -9,11 +9,18 @@ module Hookers
 
       KEYS = %w(bug feature story fixed fixes completed finished delivers)
 
-      KEYS.each{|command| Hookers.commands[command] = self } 
+      KEYS.each{|command| Hookers.commands[command] = self }
 
-      def initialize(command, options = {})
-        self.options = options
-        self.command = command
+      def self.slop
+        Slop.new(help: true) do
+          on :m, "Message to be used on commit", argument: true
+          on :id, "Pivotal story id", argument: true
+        end
+      end
+
+      def initialize(command, args)
+        self.class.slop.parse(args)
+        self.options = self.class.slop.to_hash
         self.git = Git::Repository.new
       end
 

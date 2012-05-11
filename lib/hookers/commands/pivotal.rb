@@ -7,8 +7,15 @@ module Hookers
 
       attr_accessor :options
 
-      def initialize(command, options = {})
-        self.options = options
+      def self.slop
+        Slop.new(help: true) do
+          on :"api-token", "Pivotal user token to sync commits", argument: true
+        end
+      end
+
+      def initialize(command, args)
+        self.class.slop.parse(args)
+        self.options = self.class.slop.to_hash
       end
 
       def run
