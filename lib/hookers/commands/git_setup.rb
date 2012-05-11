@@ -2,12 +2,14 @@
 
 module Hookers
   module Commands
-    class Setup
+    class GitSetup
       include Hookers::Command
 
       attr_accessor :options
 
-      def initialize(options = {})
+      Hookers.commands["setup"] = self
+
+      def initialize(command, options = {})
         self.options = options
       end
 

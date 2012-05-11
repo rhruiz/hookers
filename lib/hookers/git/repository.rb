@@ -1,3 +1,5 @@
+require 'shellwords'
+
 module Hookers
 	module Git
 		class Repository
@@ -7,7 +9,8 @@ module Hookers
 			end
 
 			def commit(message)
-				%x(git commit -m'"#{message}"')
+				command = shellwords("git commit -m'#{message}'")
+				%x(command)
 			end
 		end
 	end

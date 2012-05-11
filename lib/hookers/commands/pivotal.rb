@@ -7,7 +7,7 @@ module Hookers
 
       attr_accessor :options
 
-      def initialize(options = {})
+      def initialize(command, options = {})
         self.options = options
       end
 
