@@ -16,8 +16,7 @@ module Hookers
       attr_accessor :options
 
       def initialize(command, args)
-        self.class.slop.parse(args)
-        self.options = self.class.slop.to_hash
+        self.options = parse_options(args)
       end
 
       def run

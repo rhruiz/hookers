@@ -19,8 +19,7 @@ module Hookers
       end
 
       def initialize(command, args)
-        self.class.slop.parse(args)
-        self.options = self.class.slop.to_hash
+        self.options = parse_options(args)
         self.git = Git::Repository.new
       end
 
