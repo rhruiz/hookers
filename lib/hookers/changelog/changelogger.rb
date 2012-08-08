@@ -14,15 +14,18 @@ module Hookers
         to = options[:to] || "HEAD"
         lines = History.between(from, to)
         parser = Parser.new(@project)
-        commits = lines.map { |e| parser.parse(e) }.flatten.group_by(&:identifier)
+        commits = lines.map { |e| parser.parse(e) }.flatten
 
         output = StringIO.new
 
-        output.puts "Historias e bugs:"
-        commits.each_pair do |identifier, commits|
-          output.puts "\n * #{identifier}: - #{commits.first.uri}"
-          commits.each do |affected|
-            output.puts "   - #{affected.commit.message} - #{affected.commit.uri}"
+        types = Hash[commits.group_by(&:type).map { |type, commits| [type, commits.group_by(&:identifier)] }]
+        types.each_pair do |type, commits|
+          output.puts "\n*** #{type}S ***"
+          commits.each_pair do |identifier, commits|
+            output.puts "\n * #{identifier}: - #{commits.first.uri}"
+            commits.each do |affected|
+              output.puts "   - #{affected.commit.message} - #{affected.commit.uri}"
+            end
           end
         end
 
