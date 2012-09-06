@@ -5,7 +5,8 @@ module Hookers
     class Parser
       attr_accessor :project, :message
 
-      REGEXP = /\[(bug|feature|story|fixed|fixes|completed|finished|delivers)\s+\#\s*(\d+)\]/i
+      REGEXP = /\[(bug|feature|story|fixed|fixes|completed|finished|delivers)((?:\s+#\s*\d+){1,})\]/i
+      SUBPATTERN = /(?:\s+\#\s*(\d+))/
 
       def initialize(project)
         self.project = project
@@ -18,8 +19,10 @@ module Hookers
         commit = Commit.new(project, id, message)
 
         if !data.nil?
-          data.each do |type, number|
-            affects << Affects.new(commit, type.upcase, number)
+          data.each do |type, identifiers|
+            identifiers.scan(Parser::SUBPATTERN).flatten.each do |number|
+              affects << Affects.new(commit, type.upcase, number)
+            end
           end
         end
 
@@ -28,3 +31,4 @@ module Hookers
     end
   end
 end
+
