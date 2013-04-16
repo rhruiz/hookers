@@ -8,8 +8,9 @@ module Hookers
       end
 
       def self.between(from, to)
-        lines = %x[git log --oneline #{from}..#{to}].split(/\n/)
+        lines = %x[git log --pretty=oneline #{from}..#{to}].split(/\n/)
       end
     end
   end
 end
+
