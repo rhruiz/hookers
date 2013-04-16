@@ -18,7 +18,7 @@ module Hookers
         remote_uri = %x[git remote -v].split(/\n/).first.split(/\s+/).at(1)
 
         return nil if remote_uri.nil?
-        remote_uri.gsub!(/(git@|git:\/\/)/, "http://")
+        remote_uri.gsub!(/(git@|git:\/\/)/, "https://")
         remote_uri.gsub!(/:(?!\/\/)/, "/")
         remote_uri.gsub!(/\.git$/, "")
         name = remote_uri.split(/\//).at(-1)
