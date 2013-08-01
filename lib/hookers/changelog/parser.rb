@@ -1,29 +1,30 @@
 # encoding: UTF-8
 
+require "hookers/changelog/matchers"
+
 module Hookers
   module Changelog
     class Parser
-      attr_accessor :project, :message
+      MATCHERS = [:service_now, :bugzilla, :pivotal_tracker]
 
-      REGEXP = /\[(bug|feature|story|fixed|fixes|completed|finished|delivers)((?:\s+#\s*\d+){1,})\]/i
-      SUBPATTERN = /(?:\s+\#\s*(\d+))/
+      attr_accessor :project, :message
 
       def initialize(project)
         self.project = project
       end
 
+      def get_matcher(name)
+        Hookers::Changelog::Matchers.const_get(
+          "#{name.to_s.capitalize.gsub(/(_.)/) { |e| e[1].upcase }}Matcher")
+      end
+
       def parse(line)
         id, message = line.split(" ", 2)
-        data = message.scan(Parser::REGEXP)
         affects = []
         commit = Commit.new(project, id, message)
 
-        if !data.nil?
-          data.each do |type, identifiers|
-            identifiers.scan(Parser::SUBPATTERN).flatten.each do |number|
-              affects << Affects.new(commit, type.upcase, number)
-            end
-          end
+        matchers = MATCHERS.each do |m|
+          affects += get_matcher(m).scan(commit).map(&:to_affected)
         end
 
         affects

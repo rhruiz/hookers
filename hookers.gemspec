@@ -10,6 +10,7 @@ Gem::Specification.new do |s|
   s.homepage    = ""
   s.summary     = "Git hooks and change logs"
   s.description = "Contains default hooks files to integrate git with pivotal tracker and change log generator"
+  s.add_dependency "activesupport"
 
   s.rubyforge_project = "hookers"
 
