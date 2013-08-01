@@ -4,6 +4,7 @@ require "hookers/version"
 
 Gem::Specification.new do |s|
   s.name        = "hookers"
+  s.license     = "BSD"
   s.version     = Hookers::VERSION
   s.authors     = ["Ricardo Hermida Ruiz", "Flavio Henrique"]
   s.email       = ["rhruiz@gmail.com", "flavio.henrique85@gmail.com"]
